@@ -1,7 +1,8 @@
 # Pokey the Penguin Slack Integration
 
-Add Pokey the Penguin to your Slack! This uses [webtask.io](https://webtask.io/)
-and code shamelessly pulled from [my JavaScript Pokey API module](https://github.com/rfreebern/pokey-api-js)
+Add [Pokey the Penguin](http://yellow5.com/pokey/) to your Slack! This uses
+[webtask.io](https://webtask.io/) and code shamelessly pulled from
+[my JavaScript Pokey API module](https://github.com/rfreebern/pokey-api-js)
 to provide randomized Pokey search by keyword as a slash command in a Slack
 workspace.
 
