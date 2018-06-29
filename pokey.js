@@ -2,12 +2,19 @@ var Pokey = function (ctx, done) {
     var cheerio = require('cheerio@0.19.0');
     var fetch = require('isomorphic-fetch@2.2.0');
 
+    if (typeof ctx.data.text === 'undefined') {
+        done('You must provide a "text" querystring parameter.');
+    }
+
     termEncoded = encodeURIComponent(ctx.data.text);
 
     fetch('http://yellow5.com/pokey/search/?kw=' + termEncoded)
         .then(function (response) {
             if (response.status >= 400) {
-                throw new Error('Sorry, there was an error.');
+                done(
+                    null,
+                    'Sorry, there was an error connecting to the server.'
+                );
             }
             return response.text();
         })
@@ -17,6 +24,13 @@ var Pokey = function (ctx, done) {
             var links = $('a');
             var images = $('img');
             var texts = $('i');
+
+            if (strips.length === 0) {
+                done(
+                    null,
+                    'Sorry, that search returned no results.'
+                );
+            }
 
             var results = new Array(strips.length).fill().map(Object);
             strips.each(function (i, element) {
